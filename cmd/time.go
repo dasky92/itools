@@ -27,10 +27,18 @@ var timeCmd = &cobra.Command{
 			source string
 			target time.Time
 		)
+		if len(args) == 0 {
+			now := time.Now()
+			fmt.Printf("dateformat: %s\n", now.Format(time.RFC3339))
+			fmt.Printf("UTC format: %s\n", now.UTC().Format(time.RFC3339))
+			fmt.Printf("timestamp : %d\n", now.Unix())
+			os.Exit(0)
+		} else {
+			source = args[0]
+			ts, err = strconv.ParseInt(source, 10, 64)
+		}
 
-		source = args[0]
 		// convert timestamp to datetime format
-		ts, err = strconv.ParseInt(source, 10, 64)
 		if err == nil {
 			if len(source) != 10 && len(source) != 13 && len(source) != 16 {
 				cobra.CheckErr("timestamp format: " + source)
@@ -46,6 +54,9 @@ var timeCmd = &cobra.Command{
 				cobra.CheckErr("timestamp format: " + source)
 			}
 			fmt.Printf("dateformat: %s\n", target.Format(time.RFC3339))
+			fmt.Printf("UTC format: %s\n", target.UTC().Format(time.RFC3339))
+			fmt.Printf("timestamp : %d\n", target.Unix())
+
 			os.Exit(0)
 		}
 		// convert datetime format to timeistamp
