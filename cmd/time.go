@@ -10,10 +10,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var (
-	sourceFormat, targetFormat string
-)
-
 // timeCmd represents the time command
 var timeCmd = &cobra.Command{
 	Use:   "time",
@@ -70,10 +66,6 @@ var timeCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(timeCmd)
-
-	// Now rfc3339 only is supported.
-	timeCmd.Flags().StringVarP(&sourceFormat, "sourceFormat", "s", "rfc3339", "")
-	timeCmd.Flags().StringVarP(&targetFormat, "targetFormat", "t", "rfc3339", "")
 }
 
 // AppendNano append given int64 to 16 bits.
