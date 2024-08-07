@@ -39,5 +39,5 @@ func init() {
 	rootCmd.AddCommand(jsonCmd)
 
 	jsonCmd.Flags().StringVarP(&prefix, "prefix", "p", "", "json prefix character")
-	jsonCmd.Flags().StringVarP(&prefix, "indent", "i", "\t", "json indent character")
+	jsonCmd.Flags().StringVarP(&indent, "indent", "i", "  ", "json indent character")
 }
