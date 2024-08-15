@@ -18,6 +18,8 @@ pre:
 build:
 	@CGO_ENABLED=0 go build -ldflags "-s -w" -o ${BIN_NAME}
 	@chmod +x ${BIN_NAME}
+buildwin:
+	@CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -ldflags "-s -w" -o ${BIN_NAME}.exe
 
 complete: build
 	@for file in ${COMPLETION_FILES}; do \
@@ -27,6 +29,7 @@ complete: build
 
 clean:
 	@rm -f ${BIN_NAME}
+	@rm -f ${BIN_NAME}.exe
 	@for file in ${COMPLETION_FILES}; do \
 		rm -f ${BIN_NAME}_$${file}_completion; \
 	done
