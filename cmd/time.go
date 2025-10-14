@@ -81,7 +81,7 @@ var timeCmd = &cobra.Command{
 
 		var parseErr error
 		for _, outputFormat := range outputFormats {
-			target, parseErr = time.Parse(outputFormat.label, source)
+			target, parseErr = time.Parse(outputFormat.format, source)
 			if parseErr == nil {
 				break
 			}
